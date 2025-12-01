@@ -1,0 +1,7 @@
+<div class="notices">
+  @for (notice of notifications.notices(); track notice.id) {
+    <div class="notice" [class.notice--success]="notice.kind === 'success'" [class.notice--error]="notice.kind === 'error'">
+      {{ notice.message }}
+    </div>
+  }
+</div>

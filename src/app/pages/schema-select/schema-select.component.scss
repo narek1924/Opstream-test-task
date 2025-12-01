@@ -1,0 +1,58 @@
+@use 'variables' as *;
+.schema {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $size-xl;
+  padding: $size-xxl $size-xxxl;
+  border-radius: $radius-l;
+  min-height: 500px;
+
+  &__select {
+    display: flex;
+    flex-direction: column;
+    gap: $size-xl;
+
+    h2 {
+      margin-bottom: 0;
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $size-xs;
+    height: 42px;
+
+    &--content {
+      display: flex;
+      align-items: center;
+      gap: $size-xs;
+    }
+  }
+
+  &__state-banner {
+    display: flex;
+    flex-direction: column;
+    gap: $size-s;
+    padding: $size-m;
+    border-radius: $radius-m;
+    background: $state-bg;
+    p {
+      margin: 0;
+    }
+
+    &__actions {
+      display: flex;
+      gap: $size-xs;
+      justify-content: center;
+    }
+  }
+
+  &__loading {
+    color: #6b7280;
+    margin: 0.5rem 0;
+  }
+}

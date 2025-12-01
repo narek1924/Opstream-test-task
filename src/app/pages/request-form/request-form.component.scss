@@ -1,0 +1,59 @@
+@use 'variables' as *;
+
+.request-form__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.request-form__tab {
+  width: 100%;
+  padding: $size-xs;
+  border: none;
+  text-align: left;
+  font-size: $font-size-m;
+  background-color: transparent;
+  border-top-left-radius: $size-xs;
+  border-bottom-left-radius: $size-xs;
+  cursor: pointer;
+}
+
+.request-form__tab--active {
+  background-color: $brand-background;
+  color: $brand-green-37;
+  border-right: 3px solid $brand-green-37;
+}
+
+.request-form__content {
+  display: flex;
+  flex-direction: column;
+  gap: $font-size-s;
+}
+
+.request-form__header {
+  &__title {
+    margin: 0;
+    font-size: $font-size-l;
+  }
+}
+
+.request-form__body {
+  display: flex;
+  flex-direction: column;
+  gap: $font-size-s;
+}
+
+.request-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: $font-size-s;
+
+  .card {
+    border-radius: $radius-xs;
+  }
+}
+
+.request-form__actions {
+  display: flex;
+  gap: $font-size-s;
+}

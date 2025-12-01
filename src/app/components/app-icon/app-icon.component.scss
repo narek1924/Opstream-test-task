@@ -1,0 +1,11 @@
+.app-icon {
+  display: inline-block;
+  fill: currentColor;
+  stroke: none;
+  vertical-align: middle;
+}
+
+.app-icon * {
+  fill: currentColor;
+  stroke: currentColor;
+}

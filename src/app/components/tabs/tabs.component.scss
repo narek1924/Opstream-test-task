@@ -1,0 +1,16 @@
+@use 'variables' as *;
+.tabs-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: $size-xxl;
+}
+
+.tabs-layout__nav {
+  min-width: 220px;
+  max-width: 260px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.tabs-layout__content {
+  flex: 1;
+}

@@ -1,0 +1,59 @@
+﻿@if (schema; as currentSchema) {
+<section class="request-form">
+  <app-tabs>
+    <div appTabNav class="request-form__tabs">
+      @for (sectionDef of currentSchema.sections; track sectionDef.id; let i = $index) {
+      <button
+        type="button"
+        class="request-form__tab"
+        [class.request-form__tab--active]="isActiveChip(i)"
+        (click)="navigateToSection(i)"
+      >
+        {{ sectionDef.title }}
+      </button>
+      }
+    </div>
+
+    <div appTabContent class="request-form__content">
+      <header class="request-form__header">
+        <h2 class="request-form__header__title">{{ section.title }}</h2>
+      </header>
+
+      <form [formGroup]="form" class="request-form__body">
+        <div class="request-form__fields">
+          @for (field of section.fields; track field.id) {
+          <div class="card form-card">
+            <app-input-field
+              [label]="field.label"
+              [type]="field.type"
+              [options]="field.options ?? []"
+              [name]="field.id.toString()"
+              [formControlName]="field.id.toString()"
+            ></app-input-field>
+          </div>
+          }
+        </div>
+
+        <div class="request-form__actions">
+          @if(!isFirstStep) {
+          <app-button
+            variant="secondary"
+            type="button"
+            (click)="previous()"
+            [disabled]="sectionIndex === 0"
+          >
+            Previous
+          </app-button>
+          } @if (!isLastStep) {
+          <app-button type="button" (click)="next()" [disabled]="form.invalid"> Next </app-button>
+          } @else {
+          <app-button type="button" (click)="submit()" [disabled]="form.invalid">
+            Submit
+          </app-button>
+          }
+        </div>
+      </form>
+    </div>
+  </app-tabs>
+</section>
+}

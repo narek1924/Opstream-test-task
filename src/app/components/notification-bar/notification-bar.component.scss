@@ -1,0 +1,32 @@
+@use 'variables' as *;
+
+.notices {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.notice {
+  min-width: 200px;
+  padding: $size-xs $size-s;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid $mono-gray-3;
+  box-shadow: $shadow-dropdown-menu;
+  color: #101828;
+  font-weight: 600;
+}
+
+.notice--success {
+  border-color: $brand-main;
+  color: $brand-main;
+}
+
+.notice--error {
+  border-color: #d92d20;
+  color: #d92d20;
+}

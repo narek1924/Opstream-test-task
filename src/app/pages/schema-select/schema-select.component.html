@@ -1,0 +1,43 @@
+﻿<section class="schema card">
+  <div class="schema__select">
+    <h2>What do you need to purchase?</h2>
+    @if (loading()) {
+      <div class="schema__chips">
+        @for (i of [1, 2]; track i) {
+          <app-skeleton width="110px" height="42px" borderRadius="24px"></app-skeleton>
+        }
+      </div>
+    } @else {
+      <div class="schema__chips">
+        @for (schema of schemas(); let i = $index; track schema.id) {
+          <app-chip [isActive]="isActiveChip(i)" (click)="setActiveChip(i)">
+            <div class="schema__chips--content">
+              @if (schema.icon) {
+                <app-icon
+                  [name]="schema.icon"
+                  [color]="isActiveChip(i) ? '$brand-main' : '$black'"
+                  size="17"
+                ></app-icon>
+              }
+              {{ schema.title }}
+            </div>
+          </app-chip>
+        }
+      </div>
+    }
+  </div>
+  <app-button (click)="start()" [disabled]="!activeSchema()">Start</app-button>
+  @if (state$ | async; as state) {
+    @if (hasStateForActive(state)) {
+      <div class="schema__state-banner">
+        <p>
+          Last in-progress request: <strong>{{ state.schemaId }}</strong>
+        </p>
+        <div class="schema__state-banner__actions">
+          <app-button variant="primary" (click)="resume()">Resume</app-button>
+          <app-button variant="secondary" (click)="clear()">Clear</app-button>
+        </div>
+      </div>
+    }
+  }
+</section>

@@ -1,0 +1,92 @@
+﻿<div class="field" [class.field--invalid]="invalid">
+  <label class="field__label">
+    <span>{{ label() }}</span>
+    @if (hint()) {
+    <span class="field__hint">{{ hint() }}</span>
+    }
+  </label>
+
+  @switch (type()) { @case ('text') {
+  <input
+    class="field__control"
+    type="text"
+    [value]="value ?? ''"
+    [disabled]="disabled"
+    (input)="handleChange($any($event.target).value)"
+    (blur)="markTouched()"
+  />
+  } @case ('number') {
+  <input
+    class="field__control"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    [value]="value ?? ''"
+    [disabled]="disabled"
+    (input)="handleChange($any($event.target).value)"
+    (blur)="markTouched()"
+  />
+  } @case ('textarea') {
+  <textarea
+    class="field__control field__control--textarea"
+    rows="4"
+    [value]="value ?? ''"
+    [disabled]="disabled"
+    (input)="handleChange($any($event.target).value)"
+    (blur)="markTouched()"
+  ></textarea>
+  } @case ('dropdown') {
+  <div class="dropdown" [class.dropdown--open]="dropdownOpen()">
+    <button
+      type="button"
+      class="dropdown__trigger field__control"
+      [class.dropdown__trigger--disabled]="disabled"
+      (click)="toggleDropdown($event)"
+    >
+      <span>{{ value || 'Select' }}</span>
+      <span class="dropdown__chevron" aria-hidden="true">&#9662;</span>
+    </button>
+    @if (dropdownOpen()) {
+    <div class="dropdown__menu" (click)="$event.stopPropagation()">
+      @for (option of options(); track option) {
+      <button type="button" class="dropdown__option" (click)="selectOption(option)">
+        {{ option }}
+      </button>
+      }
+    </div>
+    }
+  </div>
+  } @case ('radio') {
+  <div class="field__radio-group">
+    @for (option of options(); track option) {
+    <label class="radio">
+      <input
+        type="radio"
+        class="radio__control"
+        [attr.name]="name() || label()"
+        [disabled]="disabled"
+        [checked]="value === option"
+        (change)="handleChange(option)"
+        (blur)="markTouched()"
+      />
+      <span class="radio__mark" aria-hidden="true"></span>
+      <span class="radio__label">{{ option }}</span>
+    </label>
+    }
+  </div>
+  } @case ('toggle') {
+  <label class="toggle">
+    <input
+      type="checkbox"
+      [checked]="value ?? false"
+      [disabled]="disabled"
+      (change)="handleChange($any($event.target).checked)"
+      (blur)="markTouched()"
+    />
+    <span class="toggle__slider" aria-hidden="true"></span>
+    <span class="toggle__label">{{ value ? 'Enabled' : 'Disabled' }}</span>
+  </label>
+  } }
+
+  <p class="field__error">@if (errorMessage) {{{ errorMessage }} }</p>
+</div>

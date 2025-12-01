@@ -1,0 +1,33 @@
+@use 'variables' as *;
+.app-button {
+  padding: $size-xs $size-m;
+  font-weight: 600;
+  cursor: pointer;
+  background: $brand-main;
+  color: $white;
+  border: none;
+  border-radius: $radius-xxs;
+  font-size: $font-size-m;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: $shadow-button-default;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+:host(.secondary) .app-button {
+  background: transparent;
+  color: $mono-dark;
+  border: 1px solid $mono-gray-3;
+  box-shadow: none;
+}
+
+:host(.block) {
+  display: block;
+}

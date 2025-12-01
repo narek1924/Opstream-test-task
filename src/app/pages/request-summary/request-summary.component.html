@@ -1,0 +1,23 @@
+﻿<ng-container *ngIf="schema() as summarySchema">
+  <section class="completion card">
+    <div class="completion__header">
+      <div class="completion__illustration" aria-hidden="true">&#127856;</div>
+      <div class="completion__info">
+        <h2>Awesome!</h2>
+        <p class="completion__subtitle">It works</p>
+      </div>
+    </div>
+
+    <div class="completion__table">
+      <header>Summary</header>
+      <div class="completion__row" *ngFor="let row of rows(); trackBy: trackByLabel">
+        <span>{{ row.label }}</span>
+        <span [class.completion__value--muted]="displayValue(row.value) === 'Not answered'">
+          {{ displayValue(row.value) }}
+        </span>
+      </div>
+    </div>
+
+    <app-button (click)="complete()">Complete the Flow and Reset</app-button>
+  </section>
+</ng-container>

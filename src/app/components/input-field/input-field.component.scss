@@ -1,0 +1,221 @@
+@use 'variables' as *;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $size-m;
+
+  &__label {
+    font-size: $font-size-m;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__hint {
+    color: #475467;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  &__control {
+    border-radius: $radius-xxs;
+    border: 1px solid $mono-gray-3;
+    padding: $size-xs $size-s;
+    outline: none;
+    transition: border-color 0.2s ease;
+    height: 48px;
+    min-height: 48px;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: $brand-main;
+    }
+
+    &--dropdown {
+      cursor: pointer;
+      height: auto;
+      min-height: auto;
+    }
+
+    &--textarea {
+      height: auto;
+      min-height: 112px;
+    }
+  }
+
+  &__radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $size-xs;
+  }
+
+  &__error {
+    margin: 0;
+    font-size: $font-size-s;
+    color: $state-error;
+    min-height: 1.2rem;
+    line-height: 1.2rem;
+    margin-top: -16px;
+  }
+
+  &--invalid &__control,
+  &--invalid .radio,
+  &--invalid .toggle,
+  &--invalid .dropdown__trigger {
+    border-color: $state-error;
+  }
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: $size-xs;
+  padding: $radius-xs $radius-s;
+  border: 1px solid $mono-gray-3;
+  border-radius: $radius-l;
+  cursor: pointer;
+  font-size: $font-size-m;
+
+  &__control {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__mark {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: $brand-main;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  &__label {
+    color: #101828;
+  }
+
+  &__control:checked + &__mark {
+    border-color: $brand-main;
+  }
+
+  &__control:checked + &__mark::after {
+    opacity: 1;
+  }
+
+  &__control:focus-visible + &__mark {
+    outline: 2px solid rgba(29, 180, 150, 0.3);
+    outline-offset: 2px;
+  }
+}
+
+.toggle {
+  position: relative;
+  width: fit-content;
+  padding-left: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: #101828;
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    left: 0;
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    background: #d0d5dd;
+    transition: background 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.2rem;
+      left: 0.2rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.2s ease;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.3);
+    }
+  }
+
+  input:checked + &__slider {
+    background: $brand-main;
+  }
+
+  input:checked + &__slider::after {
+    transform: translateX(1.4rem);
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &__trigger {
+    width: 100%;
+    text-align: left;
+    background-color: $white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &__chevron {
+    font-size: 0.75rem;
+    margin-left: $size-xs;
+  }
+
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $white;
+    border-radius: 4px;
+    box-shadow: $shadow-dropdown-menu;
+    border: 1px solid $mono-gray-3;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__option {
+    padding: $size-xs $size-s;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: $font-size-m;
+    cursor: pointer;
+
+    &:hover {
+      color: $brand-main;
+      background-color: $brand-light;
+    }
+  }
+}
