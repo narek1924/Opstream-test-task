@@ -16,6 +16,9 @@
   border-top-left-radius: $size-xs;
   border-bottom-left-radius: $size-xs;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .request-form__tab--active {

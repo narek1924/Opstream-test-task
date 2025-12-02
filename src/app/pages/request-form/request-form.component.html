@@ -7,6 +7,7 @@
         type="button"
         class="request-form__tab"
         [class.request-form__tab--active]="isActiveChip(i)"
+        [disabled]="this.sectionIndex < i && form.invalid"
         (click)="navigateToSection(i)"
       >
         {{ sectionDef.title }}

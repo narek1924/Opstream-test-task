@@ -132,7 +132,7 @@ export class RequestFormComponent implements OnDestroy {
   }
 
   navigateToSection(index: number): void {
-    if (!this.schema || (this.sectionIndex === 0 && this.form.invalid)) {
+    if (!this.schema || (this.sectionIndex < index && this.form.invalid)) {
       return;
     }
     this.router.navigate(['/request', this.schema.id, index]);
